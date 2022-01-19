@@ -2,6 +2,7 @@ import { Container, Grid } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import FiltersBlock from "../Components/FiltersBlock";
 import ProductCard from "../Components/ProductCard";
+import ProductsPagination from "../Components/ProductsPagination";
 import { ClientContext } from "../Contexts/ClientProvider";
 
 const MainPage = () => {
@@ -27,6 +28,7 @@ const MainPage = () => {
             </Grid>
           ))}
         </Grid>
+        <ProductsPagination />
       </Container>
     </div>
   );

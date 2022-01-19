@@ -4,6 +4,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Slider,
   TextField,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
@@ -16,6 +17,7 @@ const FiltersBlock = () => {
   const { getProducts } = useContext(ClientContext);
   const [searchValue, setSearchValue] = useState(search.get("q") || "");
   const [colorValue, setColorValue] = useState(search.get("color") || "");
+  const [priceValue, setPriceValue] = useState(search.get("price_lte") || "");
 
   const filterProducts = (key, value) => {
     search.set(key, value);
@@ -23,6 +25,7 @@ const FiltersBlock = () => {
     navigate(newPath);
     setSearchValue(search.get("q") || "");
     setColorValue(search.get("color") || "");
+    setPriceValue(search.get("price_lte") || "");
     getProducts();
   };
 
@@ -30,6 +33,7 @@ const FiltersBlock = () => {
     navigate("/");
     setSearchValue("");
     setColorValue("");
+    setPriceValue("");
     getProducts();
   };
   return (
@@ -57,6 +61,14 @@ const FiltersBlock = () => {
             <MenuItem value="space-gray">Темно-серый</MenuItem>
           </Select>
         </FormControl>
+      </div>
+      <div>
+        <Slider
+          onChange={(e) => filterProducts("price_lte", e.target.value)}
+          valueLabelDisplay="auto"
+          max={200000}
+          step={100}
+        />
       </div>
       <div>
         <Button onClick={resetFilter} variant="contained" color="inherit">

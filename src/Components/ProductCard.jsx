@@ -6,8 +6,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import { ClientContext } from "../Contexts/ClientProvider";
 
 export default function ProductCard(props) {
+  const { addProductToCart, checkProductInCart } =
+    React.useContext(ClientContext);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -34,9 +37,25 @@ export default function ProductCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="contained">
-          В корзину
-        </Button>
+        {checkProductInCart(props.item.id) ? (
+          <Button
+            // onClick={() => addProductToCart(props.item)}
+            size="small"
+            variant="contained"
+            color="warning"
+          >
+            В корзинe
+          </Button>
+        ) : (
+          <Button
+            onClick={() => addProductToCart(props.item)}
+            size="small"
+            variant="contained"
+          >
+            В корзину
+          </Button>
+        )}
+
         <Link
           style={{ marginLeft: 15 }}
           to={`/product-detail/${props.item.id}`}

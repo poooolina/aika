@@ -34,3 +34,16 @@
 .filters-block > div:nth-child(2) {
     width: 150px;
 }
+
+
+.filters-block>div:nth-child(3) {
+    width: 150px;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.products-pagination{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}

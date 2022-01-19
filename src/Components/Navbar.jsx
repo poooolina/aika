@@ -12,11 +12,15 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
+import { Badge } from "@mui/material";
+import { ShoppingCart } from "@mui/icons-material";
+import { ClientContext } from "../Contexts/ClientProvider";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = () => {
+  const { cartCount } = React.useContext(ClientContext);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -119,6 +123,11 @@ const Navbar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+            <IconButton size="large" color="inherit">
+              <Badge color="error" badgeContent={cartCount}>
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
